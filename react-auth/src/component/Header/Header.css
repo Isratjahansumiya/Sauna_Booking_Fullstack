@@ -1,0 +1,12 @@
+.header a{
+    padding:20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#logo{
+    color: rgb(245, 135, 94);
+    font-size: 40px;
+    font-weight: bold;
+}
+

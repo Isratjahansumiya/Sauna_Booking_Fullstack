@@ -1,0 +1,14 @@
+.home {
+    display: flex;
+    margin: 40px;
+    justify-content: space-between;
+}
+.bg-img{
+  background-image: url(../images/bg.jpg);
+  min-width: 100%;
+  min-height: 100%;
+  background-repeat: no-repeat;
+}
+.full-width{
+  margin-top: 150px;
+}
