@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Container, Table, Row, Col } from 'react-bootstrap';
 import useAuth from './../../hooks/useAuth';
 import { useState } from 'react';
 import About from './../About/About';
@@ -8,13 +8,12 @@ import About from './../About/About';
 function Booking() {
     const {user}=useAuth();
     const [selectedDate,setSelectedDate]=useState({saunaDate:new Date()});
+    const [reservedTime,setReservedTime]=useState({});
     const handleBooking=()=>{
         if (user !== null) {
-            // The user object has basic properties such as display name, email, etc.
             const name = user.displayName;
             const email = user.email;
-            const emailVerified = user.emailVerified;
-            const newBooking={name,email,emailVerified,selectedDate};
+            const newBooking={name,email,selectedDate,reservedTime};
             console.log(newBooking);
             fetch('http://localhost:5000/addBooking',{
                 method: 'POST',
@@ -30,26 +29,67 @@ function Booking() {
     }
 
     return (
-        <div>
-            <div className="row">
+        <Container>
+            <div className="row full-width" >
+            <Row>
+                <Col>
+
                     <div className="col-md-4">
-                        <Form.Group controlId="dob">
+                        <Form.Group>
                             <Form.Label>Select Date</Form.Label>
                             <Form.Control
                             type="date"
-                            name="dob"
                             format= "yyyy-MM-dd"
-                            placeholder="Date of Birth"
                             defaultValue={selectedDate.saunaDate}
                             onChange={(e)=>setSelectedDate(e.target.value)} />
                         </Form.Group>
                     </div>
-                </div>
+                    <br />
+                    <p>Select Time</p>
+                    <Table striped bordered hover>
+                    <thead>
+                        <tr>
+                        <th>Time</th>
+                        <th>Reservation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <td>16</td>
+                        <td><Button variant="outline-dark" onClick={()=>{setReservedTime(16)}}>{reservedTime===16?"Reserved":"Vacant"}</Button></td>
+                        </tr>
+                        <tr>
+                        <td>17</td>
+                        <td><Button variant="outline-dark" onClick={()=>{setReservedTime(17)}}>{reservedTime===17?"Reserved":"Vacant"}</Button></td>
+                        </tr>
+                        <tr>
+                        <td>18</td>
+                        <td><Button variant="outline-dark" onClick={()=>{setReservedTime(18)}}>{reservedTime===18?"Reserved":"Vacant"}</Button></td>
+                        </tr>
+                        <tr>
+                        <td>19</td>
+                        <td><Button variant="outline-dark" onClick={()=>{setReservedTime(19)}}>{reservedTime===19?"Reserved":"Vacant"}</Button></td>
+                        </tr>
+                        <tr>
+                        <td>20</td>
+                        <td><Button variant="outline-dark" onClick={()=>{setReservedTime(20)}}>{reservedTime===20?"Reserved":"Vacant"}</Button></td>
+                        </tr>
+                        <tr>
+                        <td>21</td>
+                        <td><Button variant="outline-dark" onClick={()=>{setReservedTime(21)}}>{reservedTime===21?"Reserved":"Vacant"}</Button></td>
+                        </tr>
+                    </tbody>
+                </Table>
                 <br />
-                <Button onClick={handleBooking}variant="primary" type="submit"> Book</Button>
+                <Button size="lg" onClick={handleBooking} variant="danger" type="submit"> Book</Button>
                 <br />
+                </Col>
+                <Col>
                 <About></About>
-        </div>
+                </Col>
+            </Row>
+            </div>
+        </Container>
     );
 };
 

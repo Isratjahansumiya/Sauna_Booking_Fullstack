@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import useAuth from './../../hooks/useAuth';
+import { Card, Container } from 'react-bootstrap';
 
 function About() {
     const [bookings,setBookings]=useState([])
@@ -16,15 +17,21 @@ function About() {
         })
         .then(res=>res.json())
         .then(data=>setBookings(data))
-    },[])
+    },[user.email])
     return (
-        <div>
-            <h2>Your have {bookings.length} Bookings</h2>
+        <Container>
+        <div className='full-width'>
+            <h4>Your have {bookings.length} Bookings</h4>
             {
-                bookings.map((book)=><li key={book._id}>{book.name} , Date of booking: {new Date(book.selectedDate).toDateString('dd/mm/yyyy')}</li>)
+                bookings.map((book)=><Card body
+                key={book._id}>
+                <p>Name: {book.name}</p>
+                <p>Date of booking: {new Date(book.selectedDate).toDateString('dd/mm/yyyy')}, Booking Time: {book.reservedTime}</p>
+                </Card>)
             }
 
         </div>
+        </Container>
     );
 };
 

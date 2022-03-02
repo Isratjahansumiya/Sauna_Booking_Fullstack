@@ -16,7 +16,7 @@ function Header() {
             <Nav.Link as={Link} to="/about">About</Nav.Link>
             {user.email?<Navbar.Text>{user.displayName}</Navbar.Text>:
             <Nav.Link as={Link} to="/login"><Button size="lg" variant="outline-danger">Login</Button></Nav.Link>}
-            {user?.email && <Button size="lg" variant="outline-danger" onClick={logout}>Log out</Button>}
+            {user?.email && <Navbar.Text><Button size="lg" variant="outline-danger" onClick={logout}>Log out</Button></Navbar.Text>}
             </Nav>
          </Container>
        </Navbar>

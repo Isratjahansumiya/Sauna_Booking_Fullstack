@@ -1,6 +1,6 @@
 import { useState } from "react"
 import initializeAuthentication from '../Firebase/firebase.init';
-import { getAuth, signInWithPopup, GoogleAuthProvider,GithubAuthProvider,onAuthStateChanged,signOut} from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider,onAuthStateChanged,signOut} from "firebase/auth";
 import { useEffect } from "react";
 
 
@@ -11,22 +11,10 @@ const useFirebase=()=>{
     const [error,setError]=useState('');
     const auth=getAuth();
     const googleProvider=new GoogleAuthProvider();
-    const githubProvider=new GithubAuthProvider();
     const signInUsingGoogle=()=>{
         signInWithPopup(auth,googleProvider)
         .then(result=>{
             setUser(result.user)
-        })
-        .catch(error=>{
-            setError(error.message);
-        })
-
-    }
-    const signInUsingGithub = ()=>{
-        signInWithPopup(auth,githubProvider)
-        .then(result=>{
-            setUser(result.user)
-            console.log(result.user)
         })
         .catch(error=>{
             setError(error.message);
@@ -51,18 +39,12 @@ const useFirebase=()=>{
             }
         })
     },[auth])
-
-
-
-
-   return{
-       user,
-       error,
-       signInUsingGoogle,
-       signInUsingGithub,
-       logout
-   }
-
+    return{
+        user,
+        error,
+        signInUsingGoogle,
+        logout
+    }
 
 }
 export default useFirebase;
