@@ -1,6 +1,6 @@
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import './App.css';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+//import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Home from './component/Home/Home';
 import Login from './component/Login/Login';
 import Register from './component/Register/Register';
